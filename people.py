@@ -81,7 +81,7 @@ def create(person):
         db.session.commit()
 
         # Serialize and return the newly created person in the response
-        data = schema.dump(new_person).data
+        data = schema.dump(new_person)
 
         return data, 201
 
@@ -98,7 +98,9 @@ def update(person_id, person):
     :param person:      person to update
     :return:            updated person structure
     """
-    # Get the person requested from the db into session
+    fname = person.get("fname")
+    lname = person.get("lname") 
+ # Get the person requested from the db into session
     update_person = Person.query.filter(
         Person.person_id == person_id
     ).one_or_none()
@@ -118,7 +120,7 @@ def update(person_id, person):
         db.session.commit()
 
         # return updated person in the response
-        data = schema.dump(update_person).data
+        data = schema.dump(update_person)
 
         return data, 200
 
