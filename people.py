@@ -12,7 +12,6 @@ def read_all():
     """
     This function responds to a request for /api/people
     with the complete lists of people
-
     :return:        json string of list of people
     """
     # Create the list of people from our data
@@ -28,7 +27,6 @@ def read_one(person_id):
     """
     This function responds to a request for /api/people/{person_id}
     with one matching person from people
-
     :param person_id:   Id of person to find
     :return:            person matching id
     """
@@ -56,7 +54,6 @@ def create(person):
     """
     This function creates a new person in the people structure
     based on the passed in person data
-
     :param person:  person to create in people structure
     :return:        201 on success, 406 on person exists
     """
@@ -93,14 +90,15 @@ def create(person):
 def update(person_id, person):
     """
     This function updates an existing person in the people structure
-
     :param person_id:   Id of the person to update in the people structure
     :param person:      person to update
     :return:            updated person structure
     """
+
     fname = person.get("fname")
-    lname = person.get("lname") 
- # Get the person requested from the db into session
+    lname = person.get("lname")
+
+    # Get the person requested from the db into session
     update_person = Person.query.filter(
         Person.person_id == person_id
     ).one_or_none()
@@ -132,7 +130,6 @@ def update(person_id, person):
 def delete(person_id):
     """
     This function deletes a person from the people structure
-
     :param person_id:   Id of the person to delete
     :return:            200 on successful delete, 404 if not found
     """

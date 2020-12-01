@@ -37,6 +37,8 @@ class PersonSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Person
         sqla_session = db.session
+        include_relatioships = True
+        load_instance = True
 
     notes = fields.Nested("PersonNoteSchema", default=[], many=True)
 
@@ -62,6 +64,8 @@ class NoteSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Note
         sqla_session = db.session
+        include_relatioships = True
+        load_instance = True
 
     person = fields.Nested("NotePersonSchema", default=None)
 
